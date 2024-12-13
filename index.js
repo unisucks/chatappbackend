@@ -7,11 +7,18 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const corsOptions = {
   origin: "https://chatappfrontend-iota.vercel.app",
-
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
 const PORT = process.env.PORT || 3005;
 mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
+app.use(cookieParser());
+app.options("*", cors(corsOptions));
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
@@ -25,10 +32,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
-app.use(cookieParser());
 
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/user");
