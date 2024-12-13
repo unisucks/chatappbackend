@@ -6,7 +6,8 @@ const { app, server } = require("./socket/socket.cjs");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "http://localhost:3001",
+
   credentials: true,
 };
 mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`);
