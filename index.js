@@ -12,11 +12,14 @@ const corsOptions = {
   credentials: true, // Allow cookies to be sent with requests
 };
 const PORT = process.env.PORT || 3005;
-mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`);
-
+mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 app.use(cookieParser());
 
 const authRoute = require("./routes/auth");
