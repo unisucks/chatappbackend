@@ -6,7 +6,7 @@ const { app, server } = require("./socket/socket.cjs");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const corsOptions = {
-  origin: "http://localhost:3001",
+  origin: "http://localhost:3000",
 
   credentials: true,
 };
