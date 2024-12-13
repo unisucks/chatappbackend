@@ -6,10 +6,11 @@ const { app, server } = require("./socket/socket.cjs");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://chatappfrontend-iota.vercel.app",
 
   credentials: true,
 };
+const PORT = process.env.PORT || 3005;
 mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`);
 
 app.use(express.json());
@@ -26,6 +27,6 @@ app.use("/auth", authRoute);
 app.use("/messages", messageRoute);
 
 server.listen(
-  process.env.PORT,
+  PORT,
   console.log(`Server is running at port ${process.env.PORT}`)
 );
