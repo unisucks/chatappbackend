@@ -2,7 +2,6 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const DB = require("../models/user");
 
-module.exports = protectRoute;
 const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt; // Make sure token is in the cookie
@@ -27,3 +26,4 @@ const protectRoute = async (req, res, next) => {
     res.status(500).json({ error: "Unauthorized:Invalid Token" });
   }
 };
+module.exports = protectRoute;
